@@ -4,7 +4,7 @@
 {% block content %}
   <h1>
     TODO list
-    <a href="#" class="btn btn-primary link-to-page">
+    <a href="{% url 'manager:task-create' %}" class="btn btn-primary link-to-page">
       Add task
     </a>
   </h1>
@@ -16,29 +16,31 @@
           <strong>{{ task.content }}</strong>
           {% if task.is_done %}
             <span class="status-done">Done</span>
-            <a href="#" class="btn btn-secondary link-to-page">Undo</a>
+            <a href="{% url 'manager:task-status-update' pk=task.id %}"
+               class="btn btn-secondary link-to-page">Undo</a>
           {% else %}
             <span class="status-not-done">Not done</span>
-            <a href="#" class="btn btn-success link-to-page">Complete</a>
+            <a href="{% url 'manager:task-status-update' pk=task.id %}"
+               class="btn btn-success link-to-page">Complete</a>
           {% endif %}
         </h5>
-        <p>Created: {{ task.created_date }}</p>
-        <p class="text-mute">
+        <p>Created: {{ task.created_date }} {% if task.deadline %}Deadline:{{ task.deadline }}{% endif %}</p>
+        <p class="text-muted">
           {% if task.tags.values %}
             Tags:
             {% for tag in task.tags.all %}
               {{ tag.name }}
             {% endfor %}
-            <a href="#">Update</a>
-            <a href="#">Delete</a>
+            <a href="{% url 'manager:task-update' pk=task.id %}">Update</a>
+            <a href="{% url 'manager:task-delete' pk=task.id %}">Delete</a>
           {% else %}
-            <a href="#">Add tags</a>
+            <a href="{% url 'manager:task-update' pk=task.id %}">Add tags</a>
           {% endif %}
         </p>
-
       </div>
       <hr/>
     {% endfor %}
+
   {% else %}
     <p>There are no tasks.</p>
   {% endif %}
