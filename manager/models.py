@@ -9,8 +9,14 @@ class Task(models.Model):
     tags = models.ManyToManyField("Tag", related_name="tasks")
 
     class Meta:
-        ordering = ["content"]
+        ordering = ["is_done", "-deadline"]
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=63)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self) -> str:
+        return self.name

@@ -28,16 +28,12 @@
           Created: {{ task.created_date }}
           {% if task.deadline %}<span class="deadline">Deadline: {{ task.deadline }}</span>{% endif %}</div>
         <p class="text-muted">
-          {% if task.tags.values %}
-            Tags:
-            {% for tag in task.tags.all %}
-              {{ tag.name }}
-            {% endfor %}
+          Tags:
+          {% for tag in task.tags.all %}
+            {{ tag.name }}
+          {% endfor %}
             <a href="{% url 'manager:task-update' pk=task.id %}">Update</a>
             <a href="{% url 'manager:task-delete' pk=task.id %}">Delete</a>
-          {% else %}
-            <a href="{% url 'manager:task-update' pk=task.id %}">Add tags</a>
-          {% endif %}
         </p>
       </div>
       <hr/>
