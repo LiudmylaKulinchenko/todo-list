@@ -1,3 +1,10 @@
 from django.shortcuts import render
+from django.views import generic
 
-# Create your views here.
+from manager.models import Task
+
+
+class TaskList(generic.ListView):
+    model = Task
+    queryset = Task.objects.prefetch_related("tags")
+    paginate_by = 3
