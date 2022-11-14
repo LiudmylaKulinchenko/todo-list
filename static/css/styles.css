@@ -1,0 +1,23 @@
+body {
+    margin-top: 20px;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0 2px 0 2px;
+}
+
+.status-done {
+    color: green;
+    font-weight: bold;
+}
+
+.status-not-done {
+    color: red;
+    font-weight: bold;
+}
+
+.deadline {
+    color: darkred;
+    font-weight: bold;
+}
