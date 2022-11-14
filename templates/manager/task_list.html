@@ -24,7 +24,9 @@
                class="btn btn-success link-to-page">Complete</a>
           {% endif %}
         </h5>
-        <p>Created: {{ task.created_date }} {% if task.deadline %}Deadline:{{ task.deadline }}{% endif %}</p>
+        <div>
+          Created: {{ task.created_date }}
+          {% if task.deadline %}<span class="deadline">Deadline: {{ task.deadline }}</span>{% endif %}</div>
         <p class="text-muted">
           {% if task.tags.values %}
             Tags:
